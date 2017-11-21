@@ -198,7 +198,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="w3ls_logo_products_left">
 					</div> -->
 					<center>
-						<a href="{{URL::to('shop')}}"><img src="/img/logo.jpg" class="img-responsive"></a>
+						<a href="{{URL::to('shop')}}"><img src="/img/3.jpg" class="img-responsive"></a>
 					</center>
 					<div class="clearfix"> </div>
 				</div>
