@@ -51,8 +51,6 @@
 										echo '<td><span class="label label-warning">Waiting</span></td>';
 									else if ($crud->trans_status_pembayaran == "Canceled")
 										echo '<td><span class="label label-danger">Canceled</span></td>';
-									else
-										echo "<td></td>";
 
 									if ($crud->trans_status_pengiriman == "Delivered")
 										echo '<td><span class="label label-success">Delivered</span></td>';
@@ -60,8 +58,6 @@
 										echo '<td><span class="label label-warning">On Delivery</span></td>';
 									else if ($crud->trans_status_pengiriman == "Canceled")
 										echo '<td><span class="label label-danger">Canceled</span></td>';
-									else
-										echo "<td></td>";
 									?>
 									<td>{{$crud->trans_resi}}</td>
 									<td>{{$crud->updated_at}}</td>

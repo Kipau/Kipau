@@ -1,27 +1,6 @@
 	@extends('Layout.layout')
 	@section('title','Checkout')
 	@section('content')
-	<?php
-	$kode = "";
-	if (session()->has('konfirmasi'))
-	{
-		echo '<script language="javascript">';
-		echo 'alert("Anda telah mengKonfirmasi bahwa barang pesanan anda sudah diterima")';
-		echo '</script>';
-
-		$kode = Session::get('konfirmasi');
-	}
-	if (session()->has('ulasan'))
-	{
-		echo '<script language="javascript">';
-		echo 'alert("Anda telah memberikan ulasan")';
-		echo '</script>';
-
-		$kode = Session::get('ulasan');
-	}
-	?>
-	
-
 	<meta name="csrf-token" content="{{ Session::token() }}">
 	<div class="breadcrumbs">
 		<div class="container">
@@ -38,7 +17,7 @@
 			<div class="col-sm-3">
 				<div class=" form-group">
 					<label>Kode Transaksi</label>
-					<input type="text" id="kode" class="form-control" value="{{$kode}}">
+					<input type="text" id="kode" class="form-control">
 				</div>
 				<a href="#" class="btn btn-danger" onclick="GetTrans();">Cek</a>
 			</div>
@@ -51,13 +30,12 @@
 	</div>
 </div>
 
-<div id="cek" name="cek">
-	<div class="checkout">
-		<div class="container">
-			<div class="checkout-right" >
-			<!-- <div id="cek" name="cek">
+<div class="checkout">
+	<div class="container">
+		<div class="checkout-right">
+			<div id="cek" name="cek">
 
-			</div> -->
+			</div>
 
 
 			<!--quantity-->
@@ -83,7 +61,7 @@
 </div>
 
 <div class="clearfix"> </div>
-
+<!--modal-->
 
 
 
@@ -92,31 +70,30 @@
 </div> 
 </div>
 </div>
-
-<!-- <div class="w3_agileits_contact_grids">
+<div class="w3_agileits_contact_grids">
 	<div class="brands">
 		<div class="col-md-6 w3_agileits_contact_grid_left"  >
 			<h2 class="w3_agile_header">Tips <span> Menulis Ulasan</span></h2>
 			
-			<ol style="margin-top: 10%;margin-left: 10%">
-				<li>
-					<h4>Kesesuaian dengan deskripsi</h4>
-					<p>Cth: Ukuran dan warna sesuai dengan foto.</p>
-				</li>
-				<br>
-				<li>
-					<h4>Fungsionalitas Produk</h4>
-					<p>Cth: Produk bekerja dengan baik & kuat</p>
-				</li>
-				<br>
-				<li>
-					<h4>Keinginan merekomendasikan produk ini </h4>
-					<p>
-					Cth: Barang bagus, cepat sampai, recommended!</p>
-				</li>
-			</ol>
-
-
+					<ol style="margin-top: 10%;margin-left: 10%">
+						<li>
+							<h4>Kesesuaian dengan deskripsi</h4>
+							<p>Cth: Ukuran dan warna sesuai dengan foto.</p>
+						</li>
+						<br>
+						<li>
+							<h4>Fungsionalitas Produk</h4>
+							<p>Cth: Produk bekerja dengan baik & kuat</p>
+						</li>
+						<br>
+						<li>
+							<h4>Keinginan merekomendasikan produk ini </h4>
+							<p>
+							Cth: Barang bagus, cepat sampai, recommended!</p>
+						</li>
+					</ol>
+					
+				
 
 
 
@@ -126,20 +103,16 @@
 		<div class="col-md-6 w3_agileits_contact_grid_right">
 			<h2 class="w3_agile_header">Berikan <span> Ulasan</span></h2>
 
-			<form action="{{route('cek_status.update', 0)}}" method="post" name="form1" enctype="multipart/form-data">
-				<input name="_method" type="hidden" value="PATCH">
-				{{csrf_field()}}
-				<textarea name="ulasan" placeholder="Your message here..." required=""></textarea>
+			<form action="#" method="post">
+
+				<textarea name="Message" placeholder="Your message here..." required=""></textarea>
 				<input type="submit" value="Submit">
 			</form>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-</div> -->
 </div>
-
-
-
+</div>
 <script type="text/javascript">
 	var harga = [];
 	$(window).load(function() 
@@ -154,8 +127,6 @@
 		}
 		// document.getElementById("merk").innerHTML = op;
 		// alert(produk);
-		if (document.getElementById("kode").value != "")
-			GetTrans();
 	});
 
 	function GetTrans()
@@ -167,7 +138,7 @@
 		}
 		)
 		.done(function(data) {
-			$('#cek').replaceWith(data);
+			$('#cek').append(data);
 		})
 		.fail(function() {
 			alert( "error" );

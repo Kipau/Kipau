@@ -18,7 +18,19 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
-			
+			<div class="col-xs-6">
+				<div class="form-group">
+					<label>Date range:</label>
+
+					<div class="input-group">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<input type="text" class="form-control pull-right" id="reservation">
+					</div>
+					<!-- /.input group -->
+				</div>
+			</div>
 			<div class="col-xs-12">
 
 

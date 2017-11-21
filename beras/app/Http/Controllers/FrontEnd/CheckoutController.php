@@ -234,7 +234,6 @@ class CheckoutController extends Controller
       date_default_timezone_set('Asia/Jakarta');
         //insert table transaksi
       $trans_kode = "";
-      $total = 0;
       try
       {
         $uses = DB::select('SELECT
@@ -248,8 +247,6 @@ class CheckoutController extends Controller
         $cruds = new Transaksi_Model();
         $cruds->trans_kode = "TR".mt_rand(1,1000);
         $trans_kode = $cruds->trans_kode;
-
-
         $cruds->customer_id = Session::get('customer_id');
         $cruds->bank_id = $request->bank;
         $cruds->kurir_id = $request->kurir;
@@ -257,13 +254,12 @@ class CheckoutController extends Controller
           $cruds->kurir_service_id = $use->kurir_service_id;
         }
 
-//penambahan angka Unik
-        $total = $request->valtotal + (int)substr($trans_kode,2);
 
         $cruds->trans_ongkir = $request->valongkir;
-        $cruds->trans_total = $total;
+        $cruds->trans_total = $request->valtotal;
         $cruds->trans_note = $request->note;
         $cruds->trans_status_pembayaran = "Waiting";
+
 
         $cruds->save();
 
@@ -290,11 +286,9 @@ class CheckoutController extends Controller
           $cruds->kurir_service_id = $use->kurir_service_id;
         }
 
-        //penambahan angka Unik
-        $total = $request->valtotal + (int)substr($trans_kode,2);
 
         $cruds->trans_ongkir = $request->valongkir;
-        $cruds->trans_total = $total;
+        $cruds->trans_total = $request->valtotal;
         $cruds->trans_note = $request->note;
         $cruds->trans_status_pembayaran = "Waiting";
 
@@ -370,7 +364,7 @@ class CheckoutController extends Controller
           ');
 
         DB::unprepared('CREATE EVENT '.$trans_kode.'
-          ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL "60" MINUTE 
+          ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL "5" MINUTE 
           DO UPDATE transaksi
           SET trans_status_pembayaran="Canceled", trans_status_pengiriman="Canceled"
           WHERE trans_id="'.$trans_id->trans_id.'";');

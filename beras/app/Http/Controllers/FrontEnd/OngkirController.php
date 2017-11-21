@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use Illuminate\Http\Request;
-use Session;
 
 class OngkirController extends Controller
 {
 	public function index()
-	{		
+	{
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -39,7 +38,6 @@ class OngkirController extends Controller
 
 	public function GetCost(Request $request)
 	{
-		Session_start();
 		$output = array();
 		$asal = $request->input('valcity');
 		$kurir = $request->input('kurir');

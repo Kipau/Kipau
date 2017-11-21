@@ -157,41 +157,6 @@
 				</div>
 			</div>
 		</section>
-		
-			<section class="content">
-				<div class="col-md-6">
-          <!-- Box Comment -->
-          <div class="box box-widget">
-            <div class="box-header with-border">
-              <i class="fa fa-commenting-o"></i> Ulasan
-              <!-- /.user-block -->
-              <div class="box-tools">
-                
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- post text -->
-              <p>{{$tran->trans_ulasan}}</p>
-
-              <!-- Attachment -->
-           
-              <!-- /.attachment-block -->
-
-             
-            </div>
-            <!-- /.box-body -->
-           
-            <!-- /.box-footer -->
-          </div>
-          <!-- /.box -->
-        </div>
-		</section>
-		
-	
 	</section>
 </div>
 @endsection

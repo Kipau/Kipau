@@ -24,8 +24,9 @@ Route::resource('login_admin', 'BackEnd\LoginAdminController');
 Route::get('/dashboard', function () {
     return view('Admin.dashboard');
 });
-Route::get('/edit_contact');
-Route::resource('edit_contact', 'BackEnd\Company_Profile_Controller');
+Route::get('/edit_contact', function () {
+    return view('Admin.contact');
+});
 Route::get('/customers');
 Route::resource('customers', 'BackEnd\CustomerController');
 Route::get('/bank');
@@ -44,8 +45,6 @@ Route::get('/payment');
 Route::resource('payment', 'BackEnd\BuktiController');
 Route::get('/buyers_data');
 Route::resource('buyers_data', 'BackEnd\OrderController');
-
-Route::post('getrange','BackEnd\OrderController@GetRange');
 
 
 //Super Admin
@@ -151,13 +150,11 @@ Route::get('/profile_password');
 Route::resource('profile_password', 'FrontEnd\CustPassController');
 Route::get('/bukti');
 Route::resource('bukti', 'FrontEnd\BuktiController');
-Route::get('/konfirmasi');
-Route::resource('konfirmasi', 'FrontEnd\KonfirmasiController');
 
 
-// Route::get('/beras', function () {
-//     return view('beras');
-// });
+Route::get('/beras', function () {
+    return view('beras');
+});
 Route::get('/faqs', function () {
      $nav =  DB::select('SELECT
         produk_id,

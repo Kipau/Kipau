@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\BackEnd;
 
 use App\Transaksi_Model;
-use App\Produk_Model;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +10,6 @@ use Session;
 
 class Trans_Status_Controller extends Controller
 {
-    // $this->test = "coba2";
     /**
      * Display a listing of the resource.
      *
@@ -95,40 +93,17 @@ class Trans_Status_Controller extends Controller
     public function update(Request $request, $id)
     {
         $cruds = Transaksi_Model::findOrFail($id);
-        
+        // if(isset($_POST['pembayaran']))
+        // {
+        //     echo $_POST['pembayaran'];
+        // }
         $cruds->trans_status_pembayaran = $_POST['pembayaran'];
         $cruds->trans_status_pengiriman = $_POST['pengiriman'];
         $cruds->trans_resi = $request->resi;
         
         $cruds->save();
 
-        if($request->status != "1" && $_POST['pembayaran'] == "Success")
-        {
-            $orders = DB::select('SELECT
-                order_produk.produk_id,
-                order_produk.order_qty
-                FROM
-                order_produk
-                WHERE
-                order_produk.trans_id = "'.$cruds->trans_id.'"');
-
-            foreach ($orders as $order) 
-            {
-                $stok = Produk_Model::findOrFail($order->produk_id);
-
-                $stok->produk_stok = $stok->produk_stok-$order->order_qty; //kurangin stok
-
-                $stok->save();
-
-            }
-        }
-
         return redirect()->route('transaction_status.index')->with('alert-success', 'Data Berhasil Diubah.');
-
-        // if(isset($_POST['pembayaran']))
-        // {
-        //     echo $_POST['pembayaran'];
-        // }
     }
 
     /**

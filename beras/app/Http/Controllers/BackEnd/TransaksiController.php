@@ -80,7 +80,6 @@ class TransaksiController extends Controller
             transaksi.trans_total - transaksi.trans_ongkir as subtotal,
             transaksi.trans_total,
             transaksi.trans_resi,
-            transaksi.trans_ulasan,
             customer.customer_nama,
             customer.customer_email,
             customer.customer_nohp,

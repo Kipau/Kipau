@@ -198,7 +198,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="w3ls_logo_products_left">
 					</div> -->
 					<center>
-						<a href="{{URL::to('shop')}}"><img src="/img/3.jpg" class="img-responsive"></a>
+						<a href="{{URL::to('shop')}}"><img src="/img/logo.jpg" class="img-responsive"></a>
 					</center>
 					<div class="clearfix"> </div>
 				</div>
@@ -251,15 +251,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="w3_footer_grids">
 						<div class="col-md-3 w3_footer_grid">
 							<h3>Contact</h3>
-							<?php 
-							use App\Company_Profile_Model;
-							$cruds = Company_Profile_Model::findOrFail('1');
-							?>
+
 							<ul class="address">
-								<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i></li>
-								<li>{{$cruds->profile_alamat}}</li>
-								<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">{{$cruds->profile_email}}</a></li>
-								<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>{{$cruds->profile_nohp}}</li>
+								<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>DESA MLATIHARJO, KEC.GAJAH - KAB, DEMAK JAWA TENGAH -<span>INDONESIA.</span></li>
+								<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@mlatiharjo.com</a></li>
+								<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>(021) 213 213</li>
 							</ul>
 						</div>
 						<div class="col-md-3 w3_footer_grid">
@@ -311,7 +307,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<!-- //footer -->	
 
 			<!-- Bootstrap Core JavaScript -->
-			<script src="/js/bootstrap.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
 
 			<!-- top-header and slider -->
 			<!-- here stars scrolling icon -->

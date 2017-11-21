@@ -22,8 +22,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="box box-danger">
-					<form action="{{route('edit_contact.update', $cruds->profile_id)}}" method="post" enctype="multipart/form-data">
-						<input name="_method" type="hidden" value="PATCH">
+					<form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
 						{{csrf_field()}}
 						<div class="box-header">
 							<h3 class="box-title">Fill Data</h3>
@@ -35,8 +34,8 @@
 									<label>Email :</label>
 
 
-									<input type="text" name="email" class="form-control" value="{{$cruds->profile_email}}">
-									
+									<input type="text" name="nama" class="form-control">
+									{!! $errors->first('nama', '<p class="help-block" style="color:red">:message</p>') !!}
 									<!-- /.input group -->
 								</div>
 								<!-- /.form group -->
@@ -46,8 +45,8 @@
 									<label>No telp :</label>
 
 									
-									<input type="text" name="nohp" class="form-control" value="{{$cruds->profile_nohp}}">
-									
+									<input type="text" name="stok" class="form-control">
+									{!! $errors->first('stok', '<p class="help-block" style="color:red">:message</p>') !!}
 									
 									<!-- /.input group -->
 								</div>
@@ -65,15 +64,15 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Alamat</label>
-									<textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..." id="editor1">{{$cruds->profile_alamat}}</textarea>
-									
+									<textarea class="form-control" name="info" rows="3" placeholder="Enter ..." id="editor1"></textarea>
+									{!! $errors->first('info', '<p class="help-block" style="color:red">:message</p>') !!}
 								</div>
 							</div>
 							<!-- /.box-body -->
 
 						</div>
 						<div class="box-footer">
-							<button type="submit" class="btn btn-info ">Update</button>
+							<button type="submit" class="btn btn-info ">Submit</button>
 						</div>
 					</form>
 				</div>
