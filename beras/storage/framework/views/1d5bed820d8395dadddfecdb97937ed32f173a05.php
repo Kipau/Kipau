@@ -84,6 +84,7 @@ if(Session::get('admin_username') == null)
         <?php $msgs = DB::select('SELECT
           transaksi.trans_kode,
           transaksi.created_at,
+          transaksi.trans_read,
           customer.customer_nama
           FROM
           transaksi
@@ -226,7 +227,12 @@ if(Session::get('admin_username') == null)
 
                             <small><i class="fa fa-clock-o"></i><?php echo facebook_time_ago($msg->created_at);?></small>
                           </h4>
-
+                          <?php 
+                          if($msg->trans_read == "ula")
+                            echo "<p>Memberi ulasan</p>";
+                          else
+                            echo "<p>Membeli barang</p>";
+                          ?>
                         </a>
                       </li>
                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -462,17 +468,9 @@ if(Session::get('admin_username') == null)
   <script <?php echo $__env->yieldContent('ckedit'); ?>></script>
   <script src="/plugins/daterangepicker/moment.min.js"></script>
   <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+
+
   <script>
-    $(function () {
-      
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    
-  })
-</script>
-
-<script>
 // $(document).ready(function(){
 //   setInterval(function(){
 //         $.get("<?php echo e(URL::to('timeoutsession')); ?>", function(data){

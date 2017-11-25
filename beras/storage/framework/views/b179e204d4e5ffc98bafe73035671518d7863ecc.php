@@ -21,7 +21,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="box box-danger">
-					<form action="<?php echo e(route('product.store')); ?>" method="post" enctype="multipart/form-data">
+					<form action="<?php echo e(route('edit_contact.update', $cruds->profile_id)); ?>" method="post" enctype="multipart/form-data">
+						<input name="_method" type="hidden" value="PATCH">
 						<?php echo e(csrf_field()); ?>
 
 						<div class="box-header">
@@ -34,9 +35,8 @@
 									<label>Email :</label>
 
 
-									<input type="text" name="nama" class="form-control">
-									<?php echo $errors->first('nama', '<p class="help-block" style="color:red">:message</p>'); ?>
-
+									<input type="text" name="email" class="form-control" value="<?php echo e($cruds->profile_email); ?>">
+									
 									<!-- /.input group -->
 								</div>
 								<!-- /.form group -->
@@ -46,9 +46,8 @@
 									<label>No telp :</label>
 
 									
-									<input type="text" name="stok" class="form-control">
-									<?php echo $errors->first('stok', '<p class="help-block" style="color:red">:message</p>'); ?>
-
+									<input type="text" name="nohp" class="form-control" value="<?php echo e($cruds->profile_nohp); ?>">
+									
 									
 									<!-- /.input group -->
 								</div>
@@ -66,16 +65,56 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Alamat</label>
-									<textarea class="form-control" name="info" rows="3" placeholder="Enter ..." id="editor1"></textarea>
-									<?php echo $errors->first('info', '<p class="help-block" style="color:red">:message</p>'); ?>
-
+									<textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..." id="editor1"><?php echo e($cruds->profile_alamat); ?></textarea>
+									
 								</div>
 							</div>
 							<!-- /.box-body -->
 
 						</div>
 						<div class="box-footer">
-							<button type="submit" class="btn btn-info ">Submit</button>
+							<button type="submit" class="btn btn-info ">Update</button>
+						</div>
+					</form>
+				</div>
+				<div class="box box-success">
+					<form action="" method="post" enctype="multipart/form-data">
+						<input name="_method" type="hidden" value="PATCH">
+						<?php echo e(csrf_field()); ?>
+
+						<div class="box-header">
+							<h3 class="box-title">Company Profile</h3>
+						</div>
+						<div class="box-body">
+							<!-- Date dd/mm/yyyy -->
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Judul :</label>
+
+
+									<input type="text" name="email" class="form-control" value="">
+									
+									<!-- /.input group -->
+								</div>
+								<!-- /.form group -->
+
+								<!-- phone mask -->
+							
+
+							</div>
+							
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Isi : </label>
+									<textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..." id="editor2"></textarea>
+									
+								</div>
+							</div>
+							<!-- /.box-body -->
+
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-info ">Update</button>
 						</div>
 					</form>
 				</div>

@@ -77,6 +77,46 @@
 						</div>
 					</form>
 				</div>
+				<div class="box box-success">
+					<form action="" method="post" enctype="multipart/form-data">
+						<input name="_method" type="hidden" value="PATCH">
+						{{csrf_field()}}
+						<div class="box-header">
+							<h3 class="box-title">Company Profile</h3>
+						</div>
+						<div class="box-body">
+							<!-- Date dd/mm/yyyy -->
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Judul :</label>
+
+
+									<input type="text" name="email" class="form-control" value="">
+									
+									<!-- /.input group -->
+								</div>
+								<!-- /.form group -->
+
+								<!-- phone mask -->
+							
+
+							</div>
+							
+							<div class="col-md-12">
+								<div class="form-group">
+									<label>Isi : </label>
+									<textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..." id="editor2"></textarea>
+									
+								</div>
+							</div>
+							<!-- /.box-body -->
+
+						</div>
+						<div class="box-footer">
+							<button type="submit" class="btn btn-info ">Update</button>
+						</div>
+					</form>
+				</div>
 
 			</div>
 			<!-- /.col -->

@@ -33,8 +33,17 @@
 	</div>
 	<!-- //breadcrumbs -->
 	<!-- checkout -->
+	<br>
 	<div class="container">
 		<div class="row">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>list Transaksi</h2>
+					<ul class="cate">
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i>TR001 : 2017/11/01-Beras Melati 1x</li>
+					</ul>
+				</div>																																												
+			</div>
 			<div class="col-sm-3">
 				<div class=" form-group">
 					<label>Kode Transaksi</label>
@@ -42,6 +51,7 @@
 				</div>
 				<a href="#" class="btn btn-danger" onclick="GetTrans();">Cek</a>
 			</div>
+
 			<div class="col-sm-9">
 				<div class=" form-group">
 					

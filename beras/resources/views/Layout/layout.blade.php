@@ -263,13 +263,6 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							</ul>
 						</div>
 						<div class="col-md-3 w3_footer_grid">
-							<h3>Information</h3>
-							<ul class="info"> 
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{URL::to('contact')}}">Contact Us</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{URL::to('faqs')}}">FAQ's</a></li>
-							</ul>
-						</div>
-						<div class="col-md-3 w3_footer_grid">
 							<h3>Produk</h3>
 							<ul class="info"> 
 								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="{{URL::to('beras')}}">Beras Melati</a></li>

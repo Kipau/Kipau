@@ -220,11 +220,11 @@ if(Session::get('admin_username') == null)
                             <small><i class="fa fa-clock-o"></i><?php echo facebook_time_ago($msg->updated_at);?></small>
                           </h4>
                           <?php 
-                            if($msg->trans_read == "ula")
-                              echo "<p>Memberi ulasan</p>";
-                            else
-                              echo "<p>Membeli barang</p>";
-                            ?>
+                          if($msg->trans_read == "ula")
+                            echo "<p>Memberi ulasan</p>";
+                          else
+                            echo "<p>Membeli barang</p>";
+                          ?>
 
                         </a>
                       </li>
@@ -452,18 +452,35 @@ if(Session::get('admin_username') == null)
   <script @yield('ckedit')></script>
   <!-- date-range-picker -->
   <script src="/plugins/daterangepicker/moment.min.js"></script>
+
   <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+  
+  <script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
+      });
+       // CKEDITOR.replace('editor1');
+     $('#editor1').wysihtml5();
+     $('#editor2').wysihtml5();
+    });
+  </script>
+
   <script>
     $(function () {
 
+     var start = moment().subtract(29, 'days');
+     var end = moment();
 
-    //Date range picker
-    var start = moment().subtract(29, 'days');
-    var end = moment();
 
-    
 
-    $('#reservation').daterangepicker({
+     $('#reservation').daterangepicker({
       locale: {
         format: 'DD/MMM/YYYY'
       },
@@ -478,28 +495,18 @@ if(Session::get('admin_username') == null)
      }
    }, cb);
 
-    cb(start, end);
+     cb(start, end);
+
+   });
+ </script>
+ <script>
+  $(function () {
+
+
+    //Date range picker
+
 
   });
-</script>
-<script>
-  $(function () {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
-  });
-</script>
-<script>
-  $(function () {
-    CKEDITOR.replace('editor1')
-    $('.textarea').wysihtml5()
-  })
 </script>
 
 <script src="/js/lightbox.js"></script>
