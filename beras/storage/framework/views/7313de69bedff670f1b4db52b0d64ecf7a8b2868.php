@@ -23,12 +23,20 @@
 				<div class="forgot">
 					<a href="#">Forgot Password?</a>
 				</div>
-				<input type="submit" value="Login">
+				<input onclick="resetcart();" type="submit" value="Login">
 			</form>
 		</div>
 		<h4>For New People</h4>
-		<p><a href="registered.html">Register Here</a> (Or) go back to <a href="index.html">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+		<p><a href="<?php echo e(URL::to('register')); ?>">Register Here</a> (Or) go back to <a href="<?php echo e(URL::to('shp')); ?>">Home<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
 	</div>
 </div>
 <?php $__env->stopSection(); ?>
+
+<script type="text/javascript">
+
+function resetcart()
+{
+	paypal.minicart.reset();
+}
+</script>
 <?php echo $__env->make('Layout.layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

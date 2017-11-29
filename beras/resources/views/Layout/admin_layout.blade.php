@@ -11,6 +11,7 @@ if(Session::get('admin_username') == null)
 
     }
     ?>
+    
     <!DOCTYPE html>
     <html>
     <head>
@@ -452,35 +453,54 @@ if(Session::get('admin_username') == null)
   <script @yield('ckedit')></script>
   <!-- date-range-picker -->
   <script src="/plugins/daterangepicker/moment.min.js"></script>
-
   <script src="/plugins/daterangepicker/daterangepicker.js"></script>
-  
-  <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-      });
-       // CKEDITOR.replace('editor1');
-     $('#editor1').wysihtml5();
-     $('#editor2').wysihtml5();
-    });
-  </script>
 
-  <script>
-    $(function () {
+  <?php
+  if (isset($tgl))
+  {
+    echo '<script language="javascript">';
+    echo "$(function () {
 
-     var start = moment().subtract(29, 'days');
-     var end = moment();
+
+    //Date range picker
+      var start = moment().subtract(29, 'days');
+      var end = moment();
 
 
 
-     $('#reservation').daterangepicker({
+      $('#reservation').daterangepicker({
+        locale: {
+          format: 'DD/MMM/YYYY'
+        },
+
+        ranges: {
+         'Today': [moment(), moment()],
+         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+         'This Month': [moment().startOf('month'), moment().endOf('month')],
+         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+       }
+     }, cb);
+
+     cb(start, end);
+
+   });";
+   echo '</script>';
+
+ }
+ ?>
+<!--  <script>
+  $(function () {
+
+
+    //Date range picker
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+
+
+
+    $('#reservation').daterangepicker({
       locale: {
         format: 'DD/MMM/YYYY'
       },
@@ -495,18 +515,28 @@ if(Session::get('admin_username') == null)
      }
    }, cb);
 
-     cb(start, end);
-
-   });
- </script>
- <script>
-  $(function () {
-
-
-    //Date range picker
-
+    cb(start, end);
 
   });
+</script> -->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
+  });
+</script>
+<script>
+  $(function () {
+    CKEDITOR.replace('editor1')
+    $('.textarea').wysihtml5()
+  })
 </script>
 
 <script src="/js/lightbox.js"></script>

@@ -34,13 +34,16 @@
 					margin: 0;
 					font-weight: 700;"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Upload bukti</button> -->
 				</h6>
-
-					<a href="<?php echo e(route('cek_status.show',$info->trans_id)); ?>" class="btn btn-primary"><span class="glyphicon glyphicon-menu-right" aria-hidden="true">Upload Bukti</a>
-<!-- 				</form> -->
 				<?php
 			// date_default_timezone_set('Asia/Jakarta');
-				echo date("l, d M Y H:i:s", strtotime($info->created_at." +3minute"));
+				echo "<h5>".date("l, d M Y H:i:s", strtotime($info->created_at." +3minute"))."</h5>";
 				?>
+
+				<div class="checkout-right-basket">
+					<a href="<?php echo e(route('cek_status.show',$info->trans_id)); ?>" ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Upload Bukti</a>
+				</div>
+				
+				<!-- 	<			</form> -->
 
 
 
@@ -50,6 +53,12 @@
 				<li id="js-minute" style=" display: inline;"></li>
 				<li id="js-second" style=" display: inline;"></li>
 			</ul> -->
+		</div>
+		<div class="col-md-12" style="border-top: solid;border-left:  solid;border-right:  solid; text-align: center;padding: 2%;">
+			
+			<h4 style="padding: 2%;">Trans Kode anda Adalah : <?php echo e($info->trans_kode); ?></h4>
+			<h1 style="padding: 2%; color: red">Harap simpan baik-baik Trans Kode anda!!!</h1>
+			
 		</div>
 		<div class="col-md-12" style="border-style: solid;; text-align: center;padding: 2%;">
 			

@@ -14,7 +14,7 @@
 	<!-- checkout -->
 	<div class="checkout">
 		<div class="container">
-			<h2>Your shopping cart contains: <span>3 Products</span></h2>
+			<h2>Your shopping cart contains: <span><?php echo e(count($cruds)); ?> Products</span></h2>
 			<div class="checkout-right">
 				<table class="timetable_sub" id="keranjang" name="keranjang">
 					<thead>
@@ -126,14 +126,14 @@
 			</div>
 		</div>
 		<div class="col-sm-9">
-			<div class=" form-group">
+			<!-- <div class=" form-group">
 				<label>A/N</label>
 				<label style="width: 100%;
 				height: 34px;
 				padding: 6px 12px;
 				font-size: 14px;
 				line-height: 1.42857143;color: grey">KIPAY</label>
-			</div>
+			</div> -->
 		</div>
 		
 		<div class="col-sm-3 form-group">
@@ -172,7 +172,7 @@
 			line-height: 1.42857143;color: grey">0</label>
 		</div>
 	</div>
-	<input type="hidden" name="valongkir" id="valongkir" value="">
+	<input type="text" style="display: none;" name="valongkir" id="valongkir" value="">
 	<div id="biaya" name="biaya">
 
 	</div>
@@ -194,7 +194,7 @@
 				<li><i></i> <span> </span></li>
 				<li><i></i> <span> </span></li>
 				<li>Total Pembayaran<i>-</i> <span id="totalharga"><?php echo e($total); ?></span></li>
-				<input type="hidden" name="valtotal" id="valtotal" value="">
+				<input type="text" style="display: none;" name="valtotal" id="valtotal" value="">
 			</ul>
 		</div>
 		<div class="checkout-right-basket">
@@ -408,10 +408,19 @@
 		.done(function(data) {
 			$('#paket').html('<option>-- Pilih Paket --</option>');
 			$('#biaya').html('');
+
+			if(typeof data === 'string') {
+				data = JSON.parse(data);
+			}
+
+			// Mozilla
+			// if(typeof data === 'object') {
+			// 	alert("object");
+			// }
 			for(x in data)
 			{
 				$('#paket').append(data[x].isi);
-				$('#biaya').append('<input type="hidden" id="harga'+x+'" value="'+data[x].harga+'">');
+				$('#biaya').append('<input type="text" style="display: none;" id="harga'+x+'" value="'+data[x].harga+'">');
 			}
 
 		})

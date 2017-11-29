@@ -17,6 +17,7 @@
 	<!-- Main content -->
 	<section class="content">
 		<div class="row">
+			
 			<div class="col-xs-12">
 
 
@@ -57,7 +58,6 @@
 											<input name="_method" type="hidden" value="DELETE">
 											<input name="_token" type="hidden" value="<?php echo e(csrf_token()); ?>">
 											<div class="tools" >
-												<a href="<?php echo e(route('sbuyers_data.edit', $crud->order_id)); ?>" class="btn btn-default" style="color: #dd4b39;"><i class="fa fa-edit"></i></a>
 
 												<button type="submit" class="btn btn-default" style="color: #dd4b39;" onclick="return confirm('Anda yakin akan menghapus data dengan ID <?php echo e($crud->order_id); ?> ?');" >
 													<i class="fa fa-trash-o"></i>

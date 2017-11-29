@@ -19,6 +19,14 @@
 
 		$kode = Session::get('ulasan');
 	}
+	if (session()->has('bukti'))
+	{
+		echo '<script language="javascript">';
+		echo 'alert("Anda telah mengupload bukti pembayaran")';
+		echo '</script>';
+
+		$kode = Session::get('bukti');
+	}
 	?>
 	
 
@@ -40,7 +48,11 @@
 				<div class="categories">
 					<h2>list Transaksi</h2>
 					<ul class="cate">
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i>TR001 : 2017/11/01-Beras Melati 1x</li>
+					@foreach($lists as $list)
+					
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i>{{$list->trans_kode}} : {{$list->created_at}}</li>
+					
+					@endforeach
 					</ul>
 				</div>																																												
 			</div>

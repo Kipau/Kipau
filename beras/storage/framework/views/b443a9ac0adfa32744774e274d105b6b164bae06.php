@@ -61,7 +61,7 @@
 													<input type="hidden" name="item_name" value="<?php echo e($crud->produk_nama); ?>">
 													<input type="hidden" name="amount" value="<?php echo e($crud->produk_harga); ?>">
 													
-													<input type="hidden" name="currency_code" value="IDR">
+													<input type="hidden" name="currency_code" value="USD">
 													<input type="hidden" name="return" value=" ">
 													<input type="hidden" name="cancel_return" value=" ">
 													<input type="submit" name="submit" value="Add to cart" class="button">

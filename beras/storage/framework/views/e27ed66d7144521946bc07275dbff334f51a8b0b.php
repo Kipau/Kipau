@@ -11,6 +11,7 @@ if(Session::get('admin_username') == null)
 
     }
     ?>
+    
     <!DOCTYPE html>
     <html>
     <head>
@@ -73,15 +74,17 @@ if(Session::get('admin_username') == null)
 
         <?php $msgs = DB::select('SELECT
           transaksi.trans_kode,
-          transaksi.created_at,
+          transaksi.updated_at,
+          transaksi.trans_read,
           customer.customer_nama
           FROM
           transaksi
           INNER JOIN customer ON transaksi.customer_id = customer.customer_id
           WHERE
-          transaksi.trans_read IS NUll
+          transaksi.trans_read IS NULL OR
+          transaksi.trans_read = "ula"
           ORDER BY
-          transaksi.created_at DESC
+          transaksi.updated_at DESC
           '); 
 
         $totals = DB::select('SELECT
@@ -190,7 +193,7 @@ if(Session::get('admin_username') == null)
           <span class="label label-success"><?php echo e($total->total); ?></span>
         </a>
         <ul class="dropdown-menu">
-          
+
           <li class="header">You have <?php echo e($total->total); ?> messages</li>
           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
           <li>
@@ -214,8 +217,16 @@ if(Session::get('admin_username') == null)
                           <h4>
                             <?php echo e($msg->customer_nama); ?>
 
-                            <small><i class="fa fa-clock-o"></i><?php echo facebook_time_ago($msg->created_at);?></small>
+
+
+                            <small><i class="fa fa-clock-o"></i><?php echo facebook_time_ago($msg->updated_at);?></small>
                           </h4>
+                          <?php 
+                          if($msg->trans_read == "ula")
+                            echo "<p>Memberi ulasan</p>";
+                          else
+                            echo "<p>Membeli barang</p>";
+                          ?>
 
                         </a>
                       </li>
@@ -258,24 +269,10 @@ if(Session::get('admin_username') == null)
                       </p>
                     </li>
                     <!-- Menu Body -->
-                    <li class="user-body">
-                      <div class="row">
-                        <div class="col-xs-4 text-center">
-                          <a href="#">Followers</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                          <a href="#">Sales</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                          <a href="#">Friends</a>
-                        </div>
-                      </div>
-                      <!-- /.row -->
-                    </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
                       <div class="pull-left">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+
                       </div>
                       <div class="pull-right">
                         <form method="POST" action="/logout_admin">
@@ -310,15 +307,7 @@ if(Session::get('admin_username') == null)
               </div>
             </div>
             <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-              <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search...">
-                <span class="input-group-btn">
-                  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                  </button>
-                </span>
-              </div>
-            </form>
+
             <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
@@ -369,6 +358,11 @@ if(Session::get('admin_username') == null)
               <li <?php echo $__env->yieldContent('i'); ?>>
                 <a href="<?php echo e(URL::to('payment')); ?>">
                   <i class="fa  fa-file-text"></i> <span>Bukti Pembayaran</span>
+                </a>
+              </li>
+              <li <?php echo $__env->yieldContent('j'); ?>>
+                <a href="<?php echo e(URL::to('edit_contact')); ?>">
+                  <i class="fa fa-home"></i> <span>Contact</span>
                 </a>
               </li>
             </ul>
@@ -459,27 +453,96 @@ if(Session::get('admin_username') == null)
   <script src="/dist/js/demo.js"></script>
   <!-- CK Editor -->
   <script <?php echo $__env->yieldContent('ckedit'); ?>></script>
+  <!-- date-range-picker -->
+  <script src="/plugins/daterangepicker/moment.min.js"></script>
+  <script src="/plugins/daterangepicker/daterangepicker.js"></script>
 
-  <script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
-      });
+  <?php
+  if (isset($tgl))
+  {
+    echo '<script language="javascript">';
+    echo "$(function () {
+
+
+    //Date range picker
+      var start = moment().subtract(29, 'days');
+      var end = moment();
+
+
+
+      $('#reservation').daterangepicker({
+        locale: {
+          format: 'DD/MMM/YYYY'
+        },
+
+        ranges: {
+         'Today': [moment(), moment()],
+         'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+         'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+         'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+         'This Month': [moment().startOf('month'), moment().endOf('month')],
+         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+       }
+     }, cb);
+
+     cb(start, end);
+
+   });";
+   echo '</script>';
+
+ }
+ ?>
+<!--  <script>
+  $(function () {
+
+
+    //Date range picker
+    var start = moment().subtract(29, 'days');
+    var end = moment();
+
+
+
+    $('#reservation').daterangepicker({
+      locale: {
+        format: 'DD/MMM/YYYY'
+      },
+
+      ranges: {
+       'Today': [moment(), moment()],
+       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+       'This Month': [moment().startOf('month'), moment().endOf('month')],
+       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+     }
+   }, cb);
+
+    cb(start, end);
+
+  });
+</script> -->
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
     });
-  </script>
-  <script>
-    $(function () {
-      CKEDITOR.replace('editor1')
-      $('.textarea').wysihtml5()
-    })
-  </script>
-  <script src="/js/lightbox.js"></script>
+  });
+</script>
+<script>
+  $(function () {
+    CKEDITOR.replace('editor1')
+    $('.textarea').wysihtml5()
+  })
+</script>
+
+<script src="/js/lightbox.js"></script>
+
 </body>
 </html>
 

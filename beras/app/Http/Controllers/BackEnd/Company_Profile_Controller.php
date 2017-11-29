@@ -78,7 +78,7 @@ class Company_Profile_Controller extends Controller
 
         $cruds->save();
 
-        return redirect()->route('edit_contact.index')->with('alert-success', 'Data Berhasil Diubah.');
+        return redirect()->route('edit_contact.index')->with('alert-success', 'Data Kontak Diubah.');
     }
 
     /**

@@ -41,7 +41,7 @@
 			</form>
 		</div>
 		<div class="register-home">
-			<a href="index.html">Home</a>
+			<a href="<?php echo e(URL::to('shop')); ?>">Home</a>
 		</div>
 	</div>
 </div>

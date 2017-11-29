@@ -78,7 +78,7 @@
 					</form>
 				</div>
 				<div class="box box-success">
-					<form action="" method="post" enctype="multipart/form-data">
+					<form action="{{route('edit_background.update', $cruds->profile_id)}}" method="post" enctype="multipart/form-data">
 						<input name="_method" type="hidden" value="PATCH">
 						{{csrf_field()}}
 						<div class="box-header">
@@ -91,7 +91,7 @@
 									<label>Judul :</label>
 
 
-									<input type="text" name="email" class="form-control" value="">
+									<input type="text" name="judul" class="form-control" value="{{$cruds->profile_judul}}">
 									
 									<!-- /.input group -->
 								</div>
@@ -105,7 +105,7 @@
 							<div class="col-md-12">
 								<div class="form-group">
 									<label>Isi : </label>
-									<textarea class="form-control" name="alamat" rows="3" placeholder="Enter ..." id="editor2"></textarea>
+									<textarea class="form-control" name="isi" rows="3" placeholder="Enter ..." id="editor1">{{$cruds->profile_isi}}</textarea>
 									
 								</div>
 							</div>

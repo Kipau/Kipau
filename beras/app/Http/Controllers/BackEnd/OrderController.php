@@ -23,6 +23,7 @@ class OrderController extends Controller
             }
             else if (Session::get('admin_super') == "no")
                 {
+                    $tgl = True;
                     $cruds = DB::select('SELECT
                         transaksi.trans_kode,
                         produk.produk_nama,
@@ -37,7 +38,7 @@ class OrderController extends Controller
                         ORDER BY
                         transaksi.created_at DESC');
 
-                    return view('Admin.buyers_data',compact('cruds'));
+                    return view('Admin.buyers_data',compact('cruds', 'tgl'));
                 }
                 else
                 {
@@ -122,7 +123,9 @@ class OrderController extends Controller
             ORDER BY
             transaksi.created_at DESC');
 
-        return view('Admin.buyers_data',compact('cruds', 'dari', 'sampai'));
+        $tgl = True;
+
+        return view('Admin.buyers_data',compact('cruds', 'dari', 'sampai','tgl'));
     }
 
     /**

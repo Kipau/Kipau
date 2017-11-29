@@ -26,6 +26,8 @@ Route::get('/dashboard', function () {
 });
 Route::get('/edit_contact');
 Route::resource('edit_contact', 'BackEnd\Company_Profile_Controller');
+Route::get('/edit_background');
+Route::resource('edit_background', 'BackEnd\Company_Background_Controller'); //Edit latar perusahaan
 Route::get('/customers');
 Route::resource('customers', 'BackEnd\CustomerController');
 Route::get('/bank');
@@ -129,16 +131,8 @@ Route::post('gettrans','FrontEnd\CheckTransController@GetTrans');
 
 //Member
 
-
-Route::get('/contact', function () {
-   $nav =  DB::select('SELECT
-    produk_id,
-    produk_nama ,produk_foto ,produk_harga
-    FROM
-    produk
-    ');
-   return view('contact',compact('nav'));
-});
+Route::get('/contact');
+Route::resource('contact', 'FrontEnd\ContactController');
 Route::get('/product_detail', function () {
     return view('product_detail');
 });

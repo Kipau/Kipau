@@ -7,19 +7,18 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Dashboard
-      <small>Welcome , Kipau</small>
+      Welcome
+      <small>Super Admin</small>
     </h1>
   </section>
 
   <!-- Main content -->
   <section class="content">
-    <!-- Small boxes (Stat box) -->
-    <!-- /.row (main row) -->
-    <div class="row">
+
+    <!-- <div class="row">
       <div class="col-md-3">
 
-        <!-- Profile Image -->
+
         <div class="box box-primary">
           <div class="box-body box-profile">
             <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
@@ -29,21 +28,17 @@
             <p class="text-muted text-center">Software Engineer</p>
 
           </div>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
 
-        <!-- About Me Box -->
-       
-        <!-- /.box -->
+        </div>
+    
       </div>
-      <!-- /.col -->
+
       <div class="col-md-9">
          <div class="box box-primary">
           <div class="box-header with-border">
             <h3 class="box-title">About Me</h3>
           </div>
-          <!-- /.box-header -->
+ 
           <div class="box-body">
             <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
@@ -74,11 +69,11 @@
 
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
           </div>
-          <!-- /.box-body -->
+
         </div>
       </div>
-      <!-- /.col -->
-    </div>
+
+    </div> -->
   </section>
   <!-- /.content -->
 </div>

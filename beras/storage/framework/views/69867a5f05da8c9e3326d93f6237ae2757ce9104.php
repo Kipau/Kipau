@@ -251,15 +251,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="w3_footer_grids">
 						<div class="col-md-3 w3_footer_grid">
 							<h3>Contact</h3>
-							<?php 
-							use App\Company_Profile_Model;
-							$cruds = Company_Profile_Model::findOrFail('1');
-							?>
+
 							<ul class="address">
-								<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i></li>
-								<li><?php echo e($cruds->profile_alamat); ?></li>
-								<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com"><?php echo e($cruds->profile_email); ?></a></li>
-								<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i><?php echo e($cruds->profile_nohp); ?></li>
+								<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>DESA MLATIHARJO, KEC.GAJAH - KAB, DEMAK JAWA TENGAH -<span>INDONESIA.</span></li>
+								<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@mlatiharjo.com</a></li>
+								<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>(021) 213 213</li>
+							</ul>
+						</div>
+						<div class="col-md-3 w3_footer_grid">
+							<h3>Information</h3>
+							<ul class="info"> 
+								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<?php echo e(URL::to('contact')); ?>">Contact Us</a></li>
+								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<?php echo e(URL::to('faqs')); ?>">FAQ's</a></li>
 							</ul>
 						</div>
 						<div class="col-md-3 w3_footer_grid">
@@ -304,7 +307,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<!-- //footer -->	
 
 			<!-- Bootstrap Core JavaScript -->
-			<script src="/js/bootstrap.min.js"></script>
+			<script src="js/bootstrap.min.js"></script>
 
 			<!-- top-header and slider -->
 			<!-- here stars scrolling icon -->

@@ -48,7 +48,7 @@
 <!-- //main-slider -->
 <!-- //top-header and slider -->
 <!-- top-brands -->
-<div class="top-brands">
+<!-- <div class="top-brands">
 	<div class="container">
 		<h2>Top selling offers</h2>
 		<div class="grid_3 grid_5">
@@ -518,7 +518,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <!-- //top-brands -->
  <!-- Carousel
  ================================================== -->

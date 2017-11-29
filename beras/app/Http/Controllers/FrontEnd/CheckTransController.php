@@ -18,6 +18,18 @@ class CheckTransController extends Controller
      */
     public function index()
     {
+        $lists = DB::select('SELECT
+            transaksi.trans_kode,
+            DATE_FORMAT(transaksi.created_at,"%a, %e %b %Y %k:%i:%S") as created_at
+            FROM
+            transaksi
+            WHERE
+            transaksi.trans_status_pembayaran != "Canceled" AND
+            transaksi.trans_status_pengiriman != "Delivered" AND
+            transaksi.customer_id = "1"
+            ORDER BY
+            transaksi.created_at DESC
+            '); 
         $nav =  DB::select('SELECT
             produk_id,
             produk_nama ,produk_foto ,produk_harga
@@ -26,7 +38,7 @@ class CheckTransController extends Controller
             ');
 
 
-        return view('cek_transaksi',compact('nav'));
+        return view('cek_transaksi',compact('nav', 'lists'));
     }
 
     /**
@@ -92,8 +104,10 @@ class CheckTransController extends Controller
 
         foreach ($cruds as $crud) 
         {
+            $id = $crud->trans_id;   
             $deliv = $crud->trans_status_pengiriman;
             $bayar = $crud->trans_status_pembayaran;
+            $use = Bukti_Model::where('trans_id', '=', $id)->first();
             echo '
             <div class="checkout">
             <div class="container">
@@ -109,10 +123,13 @@ class CheckTransController extends Controller
             ';
             if ($bayar != "Canceled")
                 echo "<th>Bukti Pembayaran</th>";
-            if ($deliv != "Delivered" && $bayar != "Canceled")
+
+            if ($deliv != "Delivered" && $bayar != "Canceled" && $use)
             {
                 echo '<th>Konfirmasi</th>';
             }
+
+            
             echo '</tr>
             </thead>
 
@@ -134,10 +151,10 @@ class CheckTransController extends Controller
             
             
             $ulasan = $crud->trans_ulasan; 
-            $id = $crud->trans_id;            
+            
 
         }
-        $use = Bukti_Model::where('trans_id', '=', $id)->first();
+        
 
         if ($use) //cek udh upload bukti blm
         {

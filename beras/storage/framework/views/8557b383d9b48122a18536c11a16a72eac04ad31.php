@@ -73,17 +73,15 @@ if(Session::get('admin_username') == null)
 
         <?php $msgs = DB::select('SELECT
           transaksi.trans_kode,
-          transaksi.updated_at,
-          transaksi.trans_read,
+          transaksi.created_at,
           customer.customer_nama
           FROM
           transaksi
           INNER JOIN customer ON transaksi.customer_id = customer.customer_id
           WHERE
-          transaksi.trans_read IS NULL OR
-          transaksi.trans_read = "ula"
+          transaksi.trans_read IS NUll
           ORDER BY
-          transaksi.updated_at DESC
+          transaksi.created_at DESC
           '); 
 
         $totals = DB::select('SELECT
@@ -216,16 +214,8 @@ if(Session::get('admin_username') == null)
                           <h4>
                             <?php echo e($msg->customer_nama); ?>
 
-
-
-                            <small><i class="fa fa-clock-o"></i><?php echo facebook_time_ago($msg->updated_at);?></small>
+                            <small><i class="fa fa-clock-o"></i><?php echo facebook_time_ago($msg->created_at);?></small>
                           </h4>
-                          <?php 
-                          if($msg->trans_read == "ula")
-                            echo "<p>Memberi ulasan</p>";
-                          else
-                            echo "<p>Membeli barang</p>";
-                          ?>
 
                         </a>
                       </li>
@@ -454,9 +444,16 @@ if(Session::get('admin_username') == null)
   <script <?php echo $__env->yieldContent('ckedit'); ?>></script>
   <!-- date-range-picker -->
   <script src="/plugins/daterangepicker/moment.min.js"></script>
-
   <script src="/plugins/daterangepicker/daterangepicker.js"></script>
-  
+  <script>
+  $(function () {
+    
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+   
+  })
+</script>
   <script>
     $(function () {
       $("#example1").DataTable();
@@ -468,50 +465,16 @@ if(Session::get('admin_username') == null)
         "info": true,
         "autoWidth": false
       });
-       // CKEDITOR.replace('editor1');
-     $('#editor1').wysihtml5();
-     $('#editor2').wysihtml5();
     });
   </script>
-
   <script>
     $(function () {
+      CKEDITOR.replace('editor1')
+      $('.textarea').wysihtml5()
+    })
+  </script>
 
-     var start = moment().subtract(29, 'days');
-     var end = moment();
-
-
-
-     $('#reservation').daterangepicker({
-      locale: {
-        format: 'DD/MMM/YYYY'
-      },
-
-      ranges: {
-       'Today': [moment(), moment()],
-       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-       'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-       'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-       'This Month': [moment().startOf('month'), moment().endOf('month')],
-       'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-     }
-   }, cb);
-
-     cb(start, end);
-
-   });
- </script>
- <script>
-  $(function () {
-
-
-    //Date range picker
-
-
-  });
-</script>
-
-<script src="/js/lightbox.js"></script>
+  <script src="/js/lightbox.js"></script>
 
 </body>
 </html>

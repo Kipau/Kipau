@@ -48,7 +48,10 @@
 												$cek5 = "";
 												$cek6 = "";
 												if ($crud->trans_status_pembayaran == "Success")
+												{
 													$cek1 = 'checked';
+													echo '<input type="text" name="status" id="status" value="1" style="display: none;">'; //cek sebelumnya udh sukses blm ?
+												}
 												else if ($crud->trans_status_pembayaran == "Waiting")
 													$cek2 = 'checked';
 												else if ($crud->trans_status_pembayaran == "Canceled")

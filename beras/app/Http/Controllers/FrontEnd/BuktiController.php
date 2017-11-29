@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
 use App\Bukti_Model;
+use App\Transaksi_Model;
 
 class BuktiController extends Controller
 {
@@ -38,6 +39,7 @@ class BuktiController extends Controller
     public function store(Request $request)
     {
         $cruds = new Bukti_Model();
+        $kode = Transaksi_Model::findOrFail($request->id);
 
         $cruds->trans_id = $request->id;
 
@@ -48,7 +50,7 @@ class BuktiController extends Controller
         
         $cruds->save();
 
-        return redirect()->route('cek_status.index');
+        return redirect()->route('cek_status.index')->with('bukti', $kode->trans_kode);
     }
 
     /**

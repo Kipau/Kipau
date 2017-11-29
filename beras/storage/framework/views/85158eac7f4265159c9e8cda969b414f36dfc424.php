@@ -68,7 +68,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	<div class="agileits_header">
 		<div class="container">
 			<div class="w3l_offers">
-				<p>SALE UP TO 70% OFF. USE CODE "SALE70%" . <a href="<?php echo e(URL::to('beras')); ?>">SHOP NOW</a></p>
+				
 			</div>
 			<div class="agile-login">
 				<ul>
@@ -78,10 +78,18 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						{
 							echo "<li><a href=".URL::to('login').">Login</a></li>";
 						}
+
+						// if (Session::get('nocart') == "yes")
+						// {
+						// 	echo '<script language="javascript">';
+						// 	echo 'alert("Gagal Login")';
+						// 	echo '</script>';
+						
+						// }
 						?>
 
 						<!-- <li><a href="<?php echo e(URL::to('login')); ?>">Login</a></li> -->
-						<li><a href="contact.html">Help</a></li>
+						
 
 					</ul>
 
@@ -148,7 +156,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 						<p>
 						<form method="POST" action="/logout_customer">
 						'.csrf_field().'
-						<input type="submit" value="Sign out" class="btn btn-danger btn-block" />
+						<input onclick="resetcart();" type="submit" value="Sign out" class="btn btn-danger btn-block" />
 						</form>
 
 						</p>
@@ -181,25 +189,17 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 			<div class="logo_products">
 				<div class="container">
-					<div class="w3ls_logo_products_left1">
+					<!-- <div class="w3ls_logo_products_left1">
 						<ul class="phone_email">
-							<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
+							
 
 						</ul>
 					</div>
 					<div class="w3ls_logo_products_left">
-						<a href="<?php echo e(URL::to('index')); ?>"><img src="/img/r.jpg" class="img-responsive"></a>
-					</div>
-					<div class="w3l_search">
-						<form action="#" method="post">
-							<input type="search" name="Search" placeholder="Search for a Product..." required="">
-							<button type="submit" class="btn btn-default search" aria-label="Left Align">
-								<i class="fa fa-search" aria-hidden="true"> </i>
-							</button>
-							<div class="clearfix"></div>
-						</form>
-					</div>
-
+					</div> -->
+					<center>
+						<a href="<?php echo e(URL::to('shop')); ?>"><img src="/img/logo.jpg" class="img-responsive"></a>
+					</center>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
@@ -251,18 +251,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 					<div class="w3_footer_grids">
 						<div class="col-md-3 w3_footer_grid">
 							<h3>Contact</h3>
-
+							<?php 
+							use App\Company_Profile_Model;
+							$cruds = Company_Profile_Model::findOrFail('1');
+							?>
 							<ul class="address">
-								<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>DESA MLATIHARJO, KEC.GAJAH - KAB, DEMAK JAWA TENGAH -<span>INDONESIA.</span></li>
-								<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">info@mlatiharjo.com</a></li>
-								<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>(021) 213 213</li>
-							</ul>
-						</div>
-						<div class="col-md-3 w3_footer_grid">
-							<h3>Information</h3>
-							<ul class="info"> 
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<?php echo e(URL::to('contact')); ?>">Contact Us</a></li>
-								<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="<?php echo e(URL::to('faqs')); ?>">FAQ's</a></li>
+								<li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i></li>
+								<li><?php echo e($cruds->profile_alamat); ?></li>
+								<li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@example.com"><?php echo e($cruds->profile_email); ?></a></li>
+								<li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i><?php echo e($cruds->profile_nohp); ?></li>
 							</ul>
 						</div>
 						<div class="col-md-3 w3_footer_grid">
@@ -298,23 +295,16 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 			<div class="footer-botm">
 				<div class="container">
 					<div class="w3layouts-foot">
-						<ul>
-							<li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-vimeo" aria-hidden="true"></i></a></li>
-						</ul>
+						
 					</div>
-					<div class="payment-w3ls">	
-						<img src="images/card.png" alt=" " class="img-responsive">
-					</div>
+					
 					<div class="clearfix"> </div>
 				</div>
 			</div>
 			<!-- //footer -->	
 
 			<!-- Bootstrap Core JavaScript -->
-			<script src="js/bootstrap.min.js"></script>
+			<script src="/js/bootstrap.min.js"></script>
 
 			<!-- top-header and slider -->
 			<!-- here stars scrolling icon -->
@@ -357,6 +347,11 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 
 	if (~window.location.search.indexOf('reset=true')) {
+		paypal.minicart.reset();
+	}
+
+	function resetcart()
+	{
 		paypal.minicart.reset();
 	}
 

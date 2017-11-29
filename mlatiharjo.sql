@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2017 at 10:16 PM
+-- Generation Time: Nov 29, 2017 at 03:48 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -97,7 +97,9 @@ INSERT INTO `bukti` (`bukti_id`, `trans_id`, `bukti_foto`, `created_at`, `update
 (2, 50, '50.png', '2017-10-17 02:39:04', '2017-10-17 02:39:04'),
 (3, 65, '65.png', '2017-10-17 03:23:13', '2017-10-17 03:23:13'),
 (4, 66, '66.png', '2017-10-17 05:38:27', '2017-10-17 05:38:27'),
-(5, 67, '67.png', '2017-11-14 01:13:23', '2017-11-14 01:13:23');
+(5, 67, '67.png', '2017-11-14 01:13:23', '2017-11-14 01:13:23'),
+(6, 71, '71.png', '2017-11-28 23:36:17', '2017-11-28 23:36:17'),
+(8, 2, '2.png', '2017-11-28 23:55:48', '2017-11-28 23:55:48');
 
 -- --------------------------------------------------------
 
@@ -110,15 +112,17 @@ CREATE TABLE `company_profile` (
   `profile_id` int(1) NOT NULL,
   `profile_nohp` varchar(50) DEFAULT NULL,
   `profile_alamat` varchar(100) DEFAULT NULL,
-  `profile_email` varchar(30) DEFAULT NULL
+  `profile_email` varchar(30) DEFAULT NULL,
+  `profile_judul` varchar(50) DEFAULT NULL,
+  `profile_isi` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `company_profile`
 --
 
-INSERT INTO `company_profile` (`profile_id`, `profile_nohp`, `profile_alamat`, `profile_email`) VALUES
-(1, '(021) 213 213 - Budi', 'DESA MLATIHARJO, KEC.GAJAH - KAB, DEMAK JAWA TENGAH -INDONESIA.', 'info@mlatiharjo.com');
+INSERT INTO `company_profile` (`profile_id`, `profile_nohp`, `profile_alamat`, `profile_email`, `profile_judul`, `profile_isi`) VALUES
+(1, '(021) 213 213 - Budi Waseso', '<p>DESA MLATIHARJO, KEC.GAJAH - KAB, DEMAK JAWA TENGAH -INDONESIA.</p>', 'info@mlatiharjo.com', 'Sekilas Perusahaan Mlatiharjo', 'Mulai menghilangnya maknanan lokal terutama cemilannya karena begitu banyaknya cemilan yang lebih menarik pasar karena inovasi rasa dan juga kemasan yang menarik, satu contoh cemilan khas tanah sunda yaitu rengginang yang sekarang begitu sulit untuk ditemui, lebih mudah menemui cemilan eropa seperti wafer.');
 
 -- --------------------------------------------------------
 
@@ -474,7 +478,7 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `bukti`
 --
 ALTER TABLE `bukti`
-  MODIFY `bukti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `bukti_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `company_profile`
 --

@@ -12,17 +12,12 @@
 <!-- //breadcrumbs -->
 <!-- contact -->
 <div class="about">
-	<h2 class="w3_agile_header">Sekilas <span> Perusahaan</span></h2>
+	<h2 class="w3_agile_header">{{$cruds->profile_judul}}</h2>
 	<div class="container">
 		<div class="agileinfo_single">
 			<div class="col-md-12">
 				<div class="w" style="width: 100%">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<p>{{$cruds->profile_isi}}</p>
 				</div>
 			</div>
 		</div>

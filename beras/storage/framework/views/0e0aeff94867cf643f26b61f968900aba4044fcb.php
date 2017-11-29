@@ -156,15 +156,45 @@
 			<!-- this row will not appear when printing -->
 			<div class="row no-print">
 				<div class="col-xs-12">
-					<a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
-					<button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
-					</button>
-					<button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-						<i class="fa fa-download"></i> Generate PDF
-					</button>
+					
 				</div>
 			</div>
 		</section>
+		
+			<section class="content">
+				<div class="col-md-6">
+          <!-- Box Comment -->
+          <div class="box box-widget">
+            <div class="box-header with-border">
+              <i class="fa fa-commenting-o"></i> Ulasan
+              <!-- /.user-block -->
+              <div class="box-tools">
+                
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!-- post text -->
+              <p><?php echo e($tran->trans_ulasan); ?></p>
+
+              <!-- Attachment -->
+           
+              <!-- /.attachment-block -->
+
+             
+            </div>
+            <!-- /.box-body -->
+           
+            <!-- /.box-footer -->
+          </div>
+          <!-- /.box -->
+        </div>
+		</section>
+		
+	
 	</section>
 </div>
 <?php $__env->stopSection(); ?>
